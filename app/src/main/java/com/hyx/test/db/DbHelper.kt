@@ -22,9 +22,14 @@ class DbHelper(context: Context?) :
         const val TABLE_TEAM = "test_data"
         const val COLUMN_TIME = "TIME"
         const val COLUMN_CONTENT = "CONTENT"
+        const val COLUMN_MESSAGE = "MESSAGE"
+        const val COLUMN_DOCUMEENTATION_URL = "DOCUMEENTATION_URL"
+
+
         const val DATABASE_CREATE_TEAM = ("create table "
                 + TABLE_TEAM + "(" + COLUMN_ID + " integer primary key autoincrement, "
                 + COLUMN_TIME + " INTEGER NOT NULL, "
-                + COLUMN_CONTENT + " text);")
+                + COLUMN_MESSAGE + " text, "
+                + COLUMN_DOCUMEENTATION_URL + " text);")
     }
 }

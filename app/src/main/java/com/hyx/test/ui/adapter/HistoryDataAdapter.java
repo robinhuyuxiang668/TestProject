@@ -21,6 +21,6 @@ public class HistoryDataAdapter extends BaseQuickAdapter<TestEntity, BaseViewHol
     protected void convert(@NotNull BaseViewHolder helper, TestEntity entity) {
         String time = TimeUtils.INSTANCE.getTimeStr(entity.getTime(), TimeUtils.TIME_FORMAT_YYYYMMDDHHMMSS);
         helper.setText(R.id.tv_time, time);
-        helper.setText(R.id.tv_content, entity.getContent());
+        helper.setText(R.id.tv_content, "message="+entity.getMessage()+"\n\nurl="+entity.getDocumentation_url());
     }
 }

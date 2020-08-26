@@ -16,7 +16,8 @@ class DbManage private constructor(ctx: Context) {
         val db: SQLiteDatabase = mDbHelper!!.writableDatabase
         val cv = ContentValues()
         cv.put(DbHelper.COLUMN_TIME, entity.time)
-        cv.put(DbHelper.COLUMN_CONTENT, entity.content)
+        cv.put(DbHelper.COLUMN_MESSAGE, entity.message)
+        cv.put(DbHelper.COLUMN_DOCUMEENTATION_URL, entity.documentation_url)
         db.insert(DbHelper.TABLE_TEAM, null, cv)
         db.close()
     }
@@ -31,8 +32,9 @@ class DbManage private constructor(ctx: Context) {
             var entity: TestEntity? = null
             if (cursor.moveToNext()) {
                 val time = cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_TIME))
-                val content: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_CONTENT))
-                entity = TestEntity(time, content)
+                val message: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_MESSAGE))
+                val documentation_url: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DOCUMEENTATION_URL))
+                entity = TestEntity(time, message, documentation_url)
             }
             cursor.close()
             db.close()
@@ -50,8 +52,9 @@ class DbManage private constructor(ctx: Context) {
         val list: MutableList<TestEntity> = ArrayList()
         while (cursor.moveToNext()) {
             val time = cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_TIME))
-            val content: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_CONTENT))
-            list.add(TestEntity(time, content))
+            val message: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_MESSAGE))
+            val documentation_url: String = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DOCUMEENTATION_URL))
+            list.add(TestEntity(time, message, documentation_url))
         }
         cursor.close()
         db.close()

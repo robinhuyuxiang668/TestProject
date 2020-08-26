@@ -51,6 +51,7 @@ class HistoryActivity : BaseActivity() {
         requestDatas()
     }
 
+
     private fun initRecyclerView() {
         mRv!!.layoutManager = LinearLayoutManager(this)
         mRv!!.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))

@@ -17,6 +17,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity() {
@@ -48,7 +49,7 @@ class MainActivity : BaseActivity() {
         val entity = mDbManage!!.lastData
         if (entity != null) {
             val time = getTimeStr(entity.time,TimeUtils.TIME_FORMAT_YYYYMMDDHHMMSS)
-            tv_content!!.text = getString(string.main_content, time, entity.content)
+            tv_content!!.text = getString(string.main_content, time, "message="+entity.message+"\n\nurl="+entity.documentation_url)
         }
     }
 
@@ -67,10 +68,24 @@ class MainActivity : BaseActivity() {
 
     private fun dealData(str: String) {
         val timeMillis = System.currentTimeMillis()
-        val time = getTimeStr(timeMillis,TimeUtils.TIME_FORMAT_YYYYMMDDHHMMSS
-        )
-        tv_content!!.text = getString(string.main_content, time, str)
-        mDbManage!!.insert(TestEntity(timeMillis, str))
+        val time = getTimeStr(timeMillis,TimeUtils.TIME_FORMAT_YYYYMMDDHHMMSS)
+
+        var testEntity: TestEntity? = null
+        var message = ""
+        var documentation_url = ""
+        try {
+            val json = JSONObject(str)
+            message = json.getString("message")
+            documentation_url = json.getString("documentation_url")
+            testEntity = TestEntity(timeMillis, message, documentation_url)
+        } catch (e: Exception) {
+        }
+
+        if(testEntity != null){
+            tv_content!!.text = getString(string.main_content, time, "message="+testEntity.message+"\n\nurl="+testEntity.documentation_url)
+        }
+
+        mDbManage!!.insert(TestEntity(timeMillis, message, documentation_url))
     }
 
     override fun onDestroy() {
