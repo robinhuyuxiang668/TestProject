@@ -7,5 +7,7 @@
     <string name="main_tip">最新一条数据(每5秒刷新一次):</string>
     <string name="main_cache_tip">最近一条缓存数据:</string>
     <string name="main_content">时间：%1$s\n得到数据：%2$s</string>
+    <string name="error_tip">程序错误提示</string>
+    <string name="known">知道了</string>
 
 </resources>

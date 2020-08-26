@@ -1,6 +1,7 @@
 package com.hyx.test
 
 import android.app.Application
+import com.hyx.test.util.CrashHandler
 import com.lzy.okgo.OkGo
 import com.lzy.okgo.cache.CacheEntity
 import com.lzy.okgo.cache.CacheMode
@@ -14,6 +15,9 @@ class TestApp : Application() {
     override fun onCreate() {
         super.onCreate()
         initOkGo()
+
+        //全局异常捕获初始化
+        CrashHandler.instance?.init(this)
     }
 
     /**

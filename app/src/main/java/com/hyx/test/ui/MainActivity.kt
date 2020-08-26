@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
+
 class MainActivity : BaseActivity() {
     private var tv_content: TextView? = null
     private var tv_show_history: TextView? = null
