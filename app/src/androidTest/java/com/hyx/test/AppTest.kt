@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AppTest {
     @Test
-    fun testGetDatasByPage() {1
+    fun testGetDatasByPage() {
         val ctx: Context? = InstrumentationRegistry.getInstrumentation().context
         val list = getInstance(ctx!!)!!.getDatasByPage(0)
         if (list != null) {
